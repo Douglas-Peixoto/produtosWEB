@@ -1,0 +1,57 @@
+<h5>Edição de Produtos</h5>
+<p>Utilize os campos para alterar os dados de um produto</p>
+<hr/>
+
+<form [formGroup]="formEdicao" (ngSubmit)="onSubmit()">
+  <div *ngIf="mensagem" class="mb-3 alert alert-primary">
+    <strong>{{mensagem}}</strong>
+  </div>
+  <input type="hidden" formControlName="idProduto" />
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label>Nome do produto:</label>
+      <input type="text" class="form-control" formControlName="nome" />
+      <div class="text-danger" *ngFor="form.nome.touched && form.nome.invalid">
+        <span *ngIf="form.nome.error.required">
+          Informe o nome do produto.
+        </span>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label>Preço:</label>
+      <input type="text" class="form-control" formControlName="preco" />
+      <div class="text-danger" *ngIf="form.preco.touched && form.preco.invalid">
+        <span *ngIf="form.preco.error.required">
+          Informe o preço do produto.
+        </span>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label>Quantidade:</label>
+      <input type="text" class="form-control" formControlName="quantidade" />
+      <div class="text-danger" *ngIf="form.quantidade.touched && form.quantidade.invalid">
+        <span *ngIf="form.quantidade.error.required">
+          Informe a quantidade do produto.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <label>Descrição do produto:</label>
+      <textarea class="form-control" formControlName="descricao"></textarea>
+      <div class="text-danger" *ngIf="form.descricao.touched && form.descricao.invalid">
+        <span *ngIf="form.descricao.error.required">
+          Informe a descrição do produto.
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <input type="submit" [disabled]="!formEdicao.valid" value="Salvar Alterações" class="btn btn-primary" />
+    </div>
+  </div>
+</form>
